@@ -2,6 +2,12 @@
 #__author__=chenjianfeng03@baidu.com
 
 import re
+import urllib
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 def rm_tag(html):
     f = open('temp.txt', 'w')
     s = ""
@@ -46,22 +52,31 @@ def get_para(html):
     f.close()
 
 def filter_content(s):
-    f = open('a.txt', 'w')
+    #f = open('content.txt', 'w')
     para_list = s.split('\n')
+    content = ''
     avg = len(s)/len(para_list)
-    if(avg < 40):
-        avg = 40
-    if(avg > 80):
-        avg = 60
+    if(avg < 70):
+        avg = 70
+    if(avg > 100):
+        avg = 80
     for i in range(len(para_list)):
-        if len(para_list[i]) > avg:
-            f.write(para_list[i].strip() + '\n')
-    f.close()
+        if len(para_list[i].strip()) > avg:
+            content += para_list[i] + '\n'
+            #f.write(para_list[i].strip() + '\n')
+    #f.close()
+    return content
+
+def run(html):
+    s = rm_tag(html)
+    return filter_content(s)
+
 
 if __name__ == "__main__":
-    import urllib
-    c = urllib.urlopen('http://www.baidu.com/link?url=6q4fFojUjtgatTFIzAhn9iD-YeBMDSVrmhw40yYPPRA4qQooxKkQ-lmi4hMrTcg3AwDETiz70ezHBDkClYh0ba')
+    c = urllib.urlopen('http://www.baidu.com/link?url=5XI8pKnj-kOmmwvZqMn86mBl1-S21UUFrm-3TSmG-5u9Xrd-MJSvhi6agfzwJTFxh8HOIsnq_0f-JaagfWhsIq')
     html = c.read()
-    s = rm_tag(html)
-    filter_content(s)
-    #get_para(html)
+    result = run(html)
+    print type(result).__name__
+    f = open('tmp.txt', 'w')
+    f.write(result + '\n')
+    f.close()

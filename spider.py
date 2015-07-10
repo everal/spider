@@ -2,8 +2,12 @@
 
 from pyquery import PyQuery
 import urllib
-import sys
 import socket
+import extract
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 socket.setdefaulttimeout(5)
 
@@ -55,7 +59,8 @@ class Retrieve:
         cont = f.read()
         p = PyQuery(cont)
         title = p('head').find('title').text()
-        content = p('body').text()
+        content =  extract.run(cont)
+        print type(content).__name__
         f.close()
         return title, content
 
@@ -82,7 +87,7 @@ class Retrieve:
             print i.content == ""
         print self.seg
 
-    def printToFile(self,filename):
+    def saveToFile(self,filename):
         f = open(filename, 'a')
         f.write('query:' + self.query_str + '\n')
         f.write('phrase_seg:' + self.seg['phrase'] + '\n')
@@ -91,13 +96,18 @@ class Retrieve:
         for i in range(len(self.url_list)):
             f.write('url:' + self.url_list[i].url + '\n')
             f.write('title:' + self.url_list[i].title.encode('utf-8') + '\n')
+            #print self.url_list[i].content
+            try:
+                f.write('content:' + self.url_list[i].content.encode('utf-8') + '\n')
+            except:
+                f.write('content:' + self.url_list[i].content.decode('gbk').encode('utf-8'))
         f.close()
     
 def log(msg,msg_type):
     print>>sys.stderr,msg_type+"_chenjianfeng:"+msg
 
 if __name__ == "__main__":
-    r = Retrieve('10\t刘德华的妻子是谁', 3)
+    r = Retrieve('10\t刘德华的妻子是谁', 20)
     r.get_content_from_query()
     #r.printResult()
-    r.printToFile('result.txt')
+    r.saveToFile('result.txt')
