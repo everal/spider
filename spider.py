@@ -45,6 +45,8 @@ class Retrieve:
             link = page('div').filter('#' + str(num*10+i+1)).find('h3').find('a').attr('href')
             if (link == None):
                 link = page('div').filter('#' + str(num*10+i+1)).attr('mu')
+            if('image.baidu.com' in link):
+                continue
             try:
                 title,content = self.get_title_content(link)
             except Exception,e:
@@ -60,7 +62,7 @@ class Retrieve:
         p = PyQuery(cont)
         title = p('head').find('title').text()
         content =  extract.run(cont)
-        print type(content).__name__
+        #print type(content).__name__
         f.close()
         return title, content
 

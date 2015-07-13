@@ -9,7 +9,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 def rm_tag(html):
-    f = open('temp.txt', 'w')
+    #f = open('temp.txt', 'w')
     s = ""
     r = re.compile('(?is)<body.*?>.*?</body>', re.M)
     m = r.search(html)
@@ -23,14 +23,15 @@ def rm_tag(html):
     s = s.replace('\t', '')
     s = s.replace(' ', '')
     s = s.replace('/^m', '')
+    s = s.replace('&nbsp', '')
     #s = re.sub(r'(<[^<>]+)\s*\n\s*','', s)
-    l = s.split('\n')
+    #l = s.split('\n')
     #print len(l)
-    for i in l: 
-        if i.strip():
-            if len(i) > 6:
-                f.write(i.strip() + '\n')
-    f.close()
+    #for i in l: 
+    #    if i.strip():
+    #        if len(i) > 6:
+    #            f.write(i.strip() + '\n')
+    #f.close()
     return s
 
 def get_para(html):
@@ -76,7 +77,6 @@ if __name__ == "__main__":
     c = urllib.urlopen('http://www.baidu.com/link?url=5XI8pKnj-kOmmwvZqMn86mBl1-S21UUFrm-3TSmG-5u9Xrd-MJSvhi6agfzwJTFxh8HOIsnq_0f-JaagfWhsIq')
     html = c.read()
     result = run(html)
-    print type(result).__name__
-    f = open('tmp.txt', 'w')
+    f = open('content.txt', 'w')
     f.write(result + '\n')
     f.close()
