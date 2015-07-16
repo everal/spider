@@ -1,0 +1,55 @@
+<html>
+% setdefault('query', '')
+% setdefault('page', '1')
+% setdefault('type', '')
+% setdefault('size', '2')
+% setdefault('para_evi', '')
+% setdefault('sen_evi', '')
+
+<head>
+    <title>QA DEMO</title>
+</head>
+<body>
+    <form method="post" action="/">
+        <fieldset>
+            <legend><font size=4><b>输入问题query&page</font></b> </legend>
+            <div>
+                <label for="query_id">输入问题query:</label>
+                <input name="input_query" id="query_id" type="text" value="{{query}}" style="width:1000px;height:50px;">
+            </div>
+            
+            <div>
+                <label for="pn_id">搜索结果页数:</label>
+                <input name="page_num" id="pn_id" type="text" value="{{page}}" style="width:1000px;height:50px;">
+            </div>
+
+            <div>
+                <label for="socre_type">评分类型(tf-idf/gram):</label>
+                <input name="s_type" id="socre_type" type="text" value="{{type}}" style="width:1000px;height:50px;">
+            </div>
+
+            <div>
+                <label for="windows_size">滑动窗口大小:</label>
+                <input name="w_size" id="windows_size" type="text" value="{{size}}" style="width:1000px;height:50px;">
+            </div>
+            <div>
+                <input type="submit" value="确定">
+            </div>
+        </fieldset>
+        
+        <fieldset>
+            <legend><font size=4><b>Para_evidences</font></b></legend>
+            <div>
+        <textarea name="PARA_evidences" style="width:1000px;height:200px;">{{para_evi}}</textarea>
+            </div>
+        </fieldset>
+        
+        <fieldset>
+            <legend><font size=4><b>Sentence_evidences</font></b></legend>
+            <div>
+        <textarea name="SEN_evidences" style="width:1000px;height:200px;">{{sen_evi}}</textarea>
+            </div>
+        </fieldset>
+     </form>
+</body>
+</html>

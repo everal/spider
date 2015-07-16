@@ -12,7 +12,7 @@ def run(queryStr, pn = 10):
     print "end retrieve..."
     print "start socring..."
     s = Socring()
-    s.socre(r, 'tf-idf', 'para')
+    s.socre(r, 'gram', 'para', 2)
     s.saveToFile()
     print "end socring..."
 

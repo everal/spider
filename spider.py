@@ -21,8 +21,12 @@ class URL:
 
 class Retrieve:
     def __init__(self, query='\t', pn = 10):
-        self.query_id = query.split('\t')[0]
-        self.query_str = query.split('\t')[1]
+        if(len(query.split('\t')) >= 2):
+            self.query_id = query.split('\t')[0]
+            self.query_str = query.split('\t')[1]
+        else:
+            self.query_id = ""
+            self.query_str = query
         self.pn = pn
         self.seg = {}
         self.url_list =  []
@@ -60,7 +64,10 @@ class Retrieve:
         f = urllib.urlopen(link)
         cont = f.read()
         p = PyQuery(cont)
-        title = p('head').find('title').text()
+        try:
+            title = p('head').find('title').text().encode('utf-8')
+        except:
+            title = p('head').find('title').text().decode('gbk').encode('utf-8')
         content =  extract.run(cont)
         #print type(content).__name__
         f.close()
@@ -109,7 +116,7 @@ def log(msg,msg_type):
     print>>sys.stderr,msg_type+"_chenjianfeng:"+msg
 
 if __name__ == "__main__":
-    r = Retrieve('10\t刘德华的妻子是谁', 20)
+    r = Retrieve('刘德华的妻子是谁', 20)
     r.get_content_from_query()
     #r.printResult()
     r.saveToFile('result.txt')

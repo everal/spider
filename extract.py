@@ -66,6 +66,10 @@ def filter_content(s):
             content += para_list[i] + '\n'
             #f.write(para_list[i].strip() + '\n')
     #f.close()
+    try:
+        content = content.encode('utf-8')
+    except:
+        content = content.decode('gbk').encode('utf-8')
     return content
 
 def run(html):

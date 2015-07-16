@@ -1,0 +1,59 @@
+<html>
+% setdefault('query', '')
+% setdefault('self_evi', '')
+% setdefault('bd_evi', '')
+% setdefault('lc_evi', '')
+% setdefault('fn_evi', '')
+% setdefault('ans_data', '')
+% setdefault('tag_res', '')
+<head>
+    <title>QA DEMO</title>
+</head>
+<body>
+    <form method="post" action="/">
+        <fieldset>
+            <legend><font size=4><b>输入问题query&自定义evidence</font></b> </legend>
+            <div>
+                <label for="query_id">输入问题query:</label>
+                <input name="input_query" id="query_id" type="text" value="{{query}}" autocomplete="on">
+            </div>
+            <div>
+                <label for="self_evid_id">自定义evidence:</label>
+                <input name="self_evi" id="self_evid_id" type="text" value="{{self_evi}}" autocomplete="on">
+            </div>
+            <div>
+                <input type="submit" value="确定">
+            </div>
+	</fieldset>
+        <fieldset>
+            <legend><font size=4><b>BaiDu抓取的evidences</font></b></legend>
+            <div>
+		<textarea name="BD_evidences" style="width:400px;height:80px;">{{bd_evi}}</textarea>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend><font size=4><b>本地检索的evidences</font></b></legend>
+            <div>
+		<textarea name="LC_evidences" style="width:400px;height:80px;">{{lc_evi}}</textarea>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend><font size=4><b>最终选取的evidences</font></b></legend>
+            <div>
+		<textarea name="FN_evidences" style="width:400px;height:80px;">{{fn_evi}}</textarea>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend><font size=4><b>答案以及tagging结果分析</font></b></legend>
+            <div>
+		<label for="at_id">tag答案:</label>	
+		<textarea name="answer" id="at_id" style="width:400px;height:30px;">{{ans_data}}</textarea>
+            </div>
+	    <div>
+	        <label for name="tag_id">tag结果:</label>	
+		<textarea name="tag" id="tag_id" style="width:400px;height:30px;">{{tag_res}}</textarea>
+	    </div>
+        </fieldset>
+     </form>
+</body>
+</html>
