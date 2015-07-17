@@ -4,6 +4,7 @@ from pyquery import PyQuery
 import urllib
 import socket
 import extract
+import extract1
 
 import sys
 reload(sys)
@@ -69,6 +70,7 @@ class Retrieve:
         except:
             title = p('head').find('title').text().decode('gbk').encode('utf-8')
         content =  extract.run(cont)
+        #content = extract.run(cont)
         #print type(content).__name__
         f.close()
         return title, content

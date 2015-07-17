@@ -1,7 +1,7 @@
 <html>
 % setdefault('query', '')
 % setdefault('page', '1')
-% setdefault('type', '')
+% setdefault('type', 'tf-idf')
 % setdefault('size', '2')
 % setdefault('para_evi', '')
 % setdefault('sen_evi', '')
@@ -24,7 +24,7 @@
             </div>
 
             <div>
-                <label for="socre_type">评分类型(tf-idf/gram):</label>
+                <label for="socre_type">评分类型(tf-idf/gram/basic):</label>
                 <input name="s_type" id="socre_type" type="text" value="{{type}}" style="width:1000px;height:50px;">
             </div>
 
@@ -36,7 +36,8 @@
                 <input type="submit" value="确定">
             </div>
         </fieldset>
-        
+    </form>
+    <form>
         <fieldset>
             <legend><font size=4><b>Para_evidences</font></b></legend>
             <div>

@@ -32,13 +32,13 @@ def main():
     list = sorted(socreDic.iteritems(), key = lambda x:x[1], reverse = True)
     resultPara = ""
     for i in list:
-        resultPara += str(i[1]) + '\t' + i[0] + '\n'
+        resultPara += str(i[1]) + '\t' + i[0] + '\n' + '\n'
     
     socreDic = s.socre(r, type, 'sentence', size)
     list = sorted(socreDic.iteritems(), key = lambda x:x[1], reverse = True)
     resultSentence = ""
     for i in list:
-        resultSentence += str(i[1]) + '\t' + i[0] + '\n'
+        resultSentence += str(i[1]) + '\t' + i[0] + '\n' + '\n'
     a=bottle.template('index.html',query=queryStr,page=pn,type=type,size=size,para_evi=resultPara,sen_evi=resultSentence)
     return a
 
